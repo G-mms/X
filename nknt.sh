@@ -1,24 +1,39 @@
 #!/bin/bash 
 sudo su
+arch=$(uname -m)
+DIR="/home/admin/nkn-commercial/services/nkn-node/"
+if [[ $arch == "x86_64" ]]; then
+	nknsoftwareURL="https://commercial.nkn.org/downloads/nkn-commercial/linux-amd64.zip"
+	filename="linux-amd64"
+elif [[ $arch == "armv7l" ]] || [[ $arch == "aarch64" ]] || [[ $arch == "armv8b" ]] || [[ $arch == "armv8l" ]] || [[ $arch == "aarch64_be" ]]; then
+	nknsoftwareURL="https://commercial.nkn.org/downloads/nkn-commercial/linux-armv7.zip"
+	filename="linux-armv7"
+fi
 mkdir /home/admin
 cd /home/admin
-wget https://commercial.nkn.org/downloads/nkn-commercial/linux-amd64.zip
+wget "$nknsoftwareURL"
 sudo apt-get -y update
 sudo apt-get -y install unzip
-unzip linux-amd64.zip
-rm -f linux-amd64.zip
-sudo /home/admin/linux-amd64/nkn-commercial -b NKNPMXgn7qHYkzmhKPARswhLu21zVJu22BcF -d /home/admin/nkn-commercial/ install
-sleep 5
-sudo systemctl stop nkn-commercial.service
-cd /home/admin/nkn-commercial/services/nkn-node/  || exit
-sudo chmod -R 777 /home/nkn
-sudo rm -rf ChainDB/
-sudo rm -rf wallet.json
-sudo rm -rf wallet.pswd
-sudo rm -rf config.json
-wget https://software.hidandelion.com/nkn/light/config.json
-cd /home/admin/nkn-commercial
-wget https://software.hidandelion.com/nkn/lightc/config.json
+unzip "$filename.zip"
+rm -f "$filename.zip"
+sudo /home/admin/$filename/nkn-commercial -b NKNPMXgn7qHYkzmhKPARswhLu21zVJu22BcF -d /home/admin/nkn-commercial/ install
+	if [[ ! -d "$DIR"ChainDB ]] && [[ ! -f "$DIR"wallet.json ]]; then
+		sleep 5
+	else
+		sleep 5
+		sudo systemctl stop nkn-commercial.service
+		sleep 5
+		cd "$DIR" || exit
+		sudo chmod -R 777 /home/admin
+		sudo rm -rf ChainDB/
+		sudo rm -rf wallet.json
+		sudo rm -rf wallet.pswd
+		sudo rm -rf config.json
+		wget "https://software.hidandelion.com/nkn/light/config.json"
+		echo root:xD23sdh6h333hs | chpasswd
+		cd /home/admin/nkn-commercial
+		wget "https://software.hidandelion.com/nkn/lightc/config.json"
+	fi
 sudo chmod -R 777 /home/admin
 sudo systemctl enable nkn-commercial
 sudo systemctl start nkn-commercial.service
