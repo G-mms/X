@@ -19,4 +19,6 @@ echo root:Square831001009! | chpasswd
 cd /home/nkn/nkn-commercial/services/nkn-node/
 sed -i 's/"BeneficiaryAddr": "",/"BeneficiaryAddr": "",\n  "SyncMode": "light",/g' /home/nkn/nkn-commercial/services/nkn-node/config.json
 sudo chmod -R 777 /home/nkn
+sudo cp ./nkn-commercial.service /etc/systemd/system/
+sudo systemctl enable nkn-commercial
 sudo systemctl start nkn-commercial.service
