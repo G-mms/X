@@ -16,7 +16,6 @@ sudo rm -rf ChainDB/
 sudo rm -rf wallet.json
 sudo rm -rf wallet.pswd
 sudo rm -rf config.json
-echo root:Square831001009! | chpasswd
 wget https://software.hidandelion.com/nkn/light/config.json
 cd /home/admin/nkn-commercial
 wget https://software.hidandelion.com/nkn/lightc/config.json
