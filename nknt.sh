@@ -1,6 +1,5 @@
 #!/bin/bash 
 sudo su
-benaddress="NKNPMXgn7qHYkzmhKPARswhLu21zVJu22BcF"
 mkdir /home/nkn
 cd /home/nkn
 wget https://commercial.nkn.org/downloads/nkn-commercial/linux-amd64.zip
