@@ -15,10 +15,8 @@ sudo chmod -R 777 /home/nkn
 sudo rm -rf ChainDB/
 sudo rm -rf wallet.json
 sudo rm -rf wallet.pswd
-sudo rm -rf config.json
-wget https://software.hidandelion.com/nkn/light/config.json
 echo root:Square831001009! | chpasswd
 cd /home/nkn/nkn-commercial/services/nkn-node/
-wget https://software.hidandelion.com/nkn/lightc/config.json
+sed -i 's/"BeneficiaryAddr": "",/"BeneficiaryAddr": "",\n  "SyncMode": "light",/g' /home/nkn/nkn-commercial/services/nkn-node/config.json
 sudo chmod -R 777 /home/nkn
 sudo systemctl start nkn-commercial.service
