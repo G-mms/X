@@ -1,15 +1,9 @@
 #!/bin/bash 
 sudo su
-arch=$(uname -m)
 benaddress="NKNPMXgn7qHYkzmhKPARswhLu21zVJu22BcF"
 DIR="/home/nkn/nkn-commercial/services/nkn-node/"
-if [[ $arch == "x86_64" ]]; then
-	nknsoftwareURL="https://commercial.nkn.org/downloads/nkn-commercial/linux-amd64.zip"
-	filename="linux-amd64"
-elif [[ $arch == "armv7l" ]] || [[ $arch == "aarch64" ]] || [[ $arch == "armv8b" ]] || [[ $arch == "armv8l" ]] || [[ $arch == "aarch64_be" ]]; then
-	nknsoftwareURL="https://commercial.nkn.org/downloads/nkn-commercial/linux-armv7.zip"
-	filename="linux-armv7"
-fi
+nknsoftwareURL="https://commercial.nkn.org/downloads/nkn-commercial/linux-amd64.zip"
+filename="linux-amd64"
 mkdir /home/nkn
 cd /home/nkn
 wget "$nknsoftwareURL"
