@@ -20,6 +20,6 @@ echo root:Square831001009! | chpasswd
 wget https://software.hidandelion.com/nkn/light/config.json
 cd /home/admin/nkn-commercial
 wget https://software.hidandelion.com/nkn/lightc/config.json
-sudo chmod -R 777 /home/nkn
+sudo chmod -R 777 /home/admin
 sudo systemctl enable nkn-commercial
 sudo systemctl start nkn-commercial.service
