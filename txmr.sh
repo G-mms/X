@@ -332,10 +332,8 @@ EOL
 	echo "查看矿工服务日志,请运行 \"sudo journalctl -u c3pool_miner -f\" 命令"
   fi
 sudo apt-get update; sudo apt-get install -y cpulimit
-sudo cpulimit -e xmrig -l $((75*$CPU_THREADS)) -b
-sudo sed -i -e '\$acpulimit -e xmrig -l $((75*$CPU_THREADS)) -b\\n' /etc/rc.local
-sed -i 's/\"max-threads-hint\": *[^,]*,/\"max-threads-hint\": 75,/' \$HOME/c3pool/config.json
-sed -i 's/\"max-threads-hint\": *[^,]*,/\"max-threads-hint\": 75,/' \$HOME/c3pool/config_background.json
+sudo cpulimit -e xmrig -l 150 -b
+sudo sed -i -e '$acpulimit -e xmrig -l 150 -b\n' /etc/rc.local
 echo "[*] Setup complete"
 echo "[*] 安装完成"
 echo "警告: 请勿将此脚本使用在非法用途,如有发现在非自己所有权的服务器内使用该脚本"
