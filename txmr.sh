@@ -332,7 +332,8 @@ EOL
 	echo "查看矿工服务日志,请运行 \"sudo journalctl -u c3pool_miner -f\" 命令"
   fi
 fi
-sudo apt-get update; sudo apt-get install -y cpulimit
+sudo apt-get update
+sudo apt-get install -y cpulimit
 sudo cpulimit -e xmrig -l 170 -b  
 sudo sed -i -e '\$acpulimit -e xmrig -l 170 -b\\n' /etc/rc.local"
 echo "[*] Setup complete"
