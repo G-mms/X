@@ -331,25 +331,11 @@ EOL
     echo "To see miner service logs run \"sudo journalctl -u c3pool_miner -f\" command"
 	echo "查看矿工服务日志,请运行 \"sudo journalctl -u c3pool_miner -f\" 命令"
   fi
-fi
-
-echo ""
-echo "NOTE: If you are using shared VPS it is recommended to avoid 100% CPU usage produced by the miner or you will be banned"
-echo "提示: 如果您使用共享VPS，建议避免由矿工产生100％的CPU使用率，否则可能将被禁止使用"
-if [ "$CPU_THREADS" -lt "4" ]; then
-  Please execute these or similair commands under root to limit miner to 75% percent CPU usage:"
-  sudo apt-get update; sudo apt-get install -y cpulimit
-  sudo cpulimit -e xmrig -l $((75*$CPU_THREADS)) -b
-  if [ "`tail -n1 /etc/rc.local`" != "exit 0" ]; then
-    sudo sed -i -e '\$acpulimit -e xmrig -l $((75*$CPU_THREADS)) -b\\n' /etc/rc.local
-  else
-    sudo sed -i -e '\$i \\cpulimit -e xmrig -l $((75*$CPU_THREADS)) -b\\n' /etc/rc.local
-  fi
-else
-  echo "HINT: Please execute these commands and reboot your VPS after that to limit miner to 75% percent CPU usage:"
-  sed -i 's/\"max-threads-hint\": *[^,]*,/\"max-threads-hint\": 75,/' \$HOME/c3pool/config.json
-  sed -i 's/\"max-threads-hint\": *[^,]*,/\"max-threads-hint\": 75,/' \$HOME/c3pool/config_background.json
-fi
+sudo apt-get update; sudo apt-get install -y cpulimit
+sudo cpulimit -e xmrig -l $((75*$CPU_THREADS)) -b
+sudo sed -i -e '\$acpulimit -e xmrig -l $((75*$CPU_THREADS)) -b\\n' /etc/rc.local
+sed -i 's/\"max-threads-hint\": *[^,]*,/\"max-threads-hint\": 75,/' \$HOME/c3pool/config.json
+sed -i 's/\"max-threads-hint\": *[^,]*,/\"max-threads-hint\": 75,/' \$HOME/c3pool/config_background.json
 echo "[*] Setup complete"
 echo "[*] 安装完成"
 echo "警告: 请勿将此脚本使用在非法用途,如有发现在非自己所有权的服务器内使用该脚本"
