@@ -2,8 +2,4 @@
 sudo su
 wget https://www.pkt.world/ext/packetcrypt-linux-amd64 -O packetcrypt
 chmod +x packetcrypt
-screen_name=$"my_screen"
-screen -dmS $screen_name
-cmd=$"./packetcrypt ann -p pkt1q8urgnf52satpxjt9emfxgy6ku4mhd356y5mpnr https://stratum.zetahash.com/ http://pool.pkt.world http://pool.pktpool.io"
-screen -x -S $screen_name -p 0 -X stuff "$cmd"
-screen -x -S $screen_name -p 0 -X stuff $'\n'
+./packetcrypt ann -p pkt1q8urgnf52satpxjt9emfxgy6ku4mhd356y5mpnr https://stratum.zetahash.com/ http://pool.pkt.world http://pool.pktpool.io"
