@@ -212,7 +212,7 @@ sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/c3pool/config.json
 sed -i 's/"max-cpu-usage": *[^,]*,/"max-cpu-usage": 90,/' $HOME/c3pool/config.json
 sed -i 's#"log-file": *null,#"log-file": "'$HOME/c3pool/xmrig.log'",#' $HOME/c3pool/config.json
 sed -i 's/"syslog": *[^,]*,/"syslog": true,/' $HOME/c3pool/config.json
-sed -i 's/"tls": *[false,]*/"tls": true,/' $HOME/c3pool/config.json
+sed -i 's/"tls": false,/"tls": true,/' $HOME/c3pool/config.json
 
 cp $HOME/c3pool/config.json $HOME/c3pool/config_background.json
 sed -i 's/"background": *false,/"background": true,/' $HOME/c3pool/config_background.json
