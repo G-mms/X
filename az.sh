@@ -1,5 +1,5 @@
 #!/bin/bash
-curl -fsSL https://get.docker.com | bash -s 码头工人
+wget -qO- https://get.docker.com/ | sh
 docker network create --subnet=172.18.0.0/24 --opt " com.docker.network.bridge.name " = " docker1 " docker1
 iptables -t nat -I POSTROUTING -p all -s 172.18.0.4 -j SNAT --to-source 10.0.0.4
 iptables -t nat -I POSTROUTING -p all -s 172.18.0.5 -j SNAT --to-source 10.0.0.5
